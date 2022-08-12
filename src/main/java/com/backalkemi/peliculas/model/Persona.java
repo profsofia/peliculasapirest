@@ -20,7 +20,6 @@ public class Persona {
     String edad;
     String peso;
     String historia;
-    String peliculas;
     String peliculas_seriesAsociadas;
 
 }
