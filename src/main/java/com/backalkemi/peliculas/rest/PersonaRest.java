@@ -10,21 +10,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class PersonaRest {
 
     @Autowired
     private PersonaRepo personaRepo;
-    @GetMapping("/verPersonajes")
+    @GetMapping("/verpersonajes")
     public List<Persona> verTodosLosPersonajes(){
         return personaRepo.findAll();
     }
 
-    @GetMapping("/verUnPersonaje/{id}")
+    @GetMapping("/verunpersonaje/{id}")
     public ResponseEntity<Persona> buscarById(@PathVariable Long id){
         Persona persona = personaRepo.findById(id).orElseThrow(()->new RespuestaNoEncontrado("No se encontró el personaje que buscabas"));
         return ResponseEntity.ok(persona);
     }
-    @PutMapping("/actualizarPersonaje/{id}")
+    @PutMapping("/actualizarpersonaje/{id}")
     public ResponseEntity <Persona> actualizar(@PathVariable Long id, @RequestBody Persona editPersonaje){
         Persona persona = personaRepo.findById(id).orElseThrow(()->new RespuestaNoEncontrado("No se pudo actualizar el personaje"));
         persona.setImagen(editPersonaje.getImagen());
